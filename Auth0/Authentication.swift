@@ -507,7 +507,7 @@ public protocol Authentication: Trackable, Loggable {
      - See: [Authentication API Endpoint](https://auth0.com/docs/api/authentication#get-code-or-link)
      - See: [Error Responses](https://auth0.com/docs/api/authentication#post-passwordless-start)
      */
-    func startPasswordless(phoneNumber: String, type: PasswordlessType, connection: String) -> Request<Void, AuthenticationError>
+    func startPasswordless(phoneNumber: String, type: PasswordlessType, connection: String) -> Request<[String: Any], AuthenticationError>
 
     /**
      Returns OIDC standard claims information by performing a request to the `/userinfo` endpoint.
@@ -678,7 +678,7 @@ public extension Authentication {
         return self.startPasswordless(email: email, type: type, connection: connection)
     }
 
-    func startPasswordless(phoneNumber: String, type: PasswordlessType = .code, connection: String = "sms") -> Request<Void, AuthenticationError> {
+    func startPasswordless(phoneNumber: String, type: PasswordlessType = .code, connection: String = "sms") -> Request<[String: Any], AuthenticationError> {
         return self.startPasswordless(phoneNumber: phoneNumber, type: type, connection: connection)
     }
 
